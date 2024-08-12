@@ -1,9 +1,5 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ImdbService } from '../services/imdb.service';
 
 @Component({
   selector: 'app-search-movies',
@@ -14,9 +10,26 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 export class SearchMoviesComponent implements OnInit {
   search = '';
-  constructor() { }
+  result = '';
 
-  ngOnInit(): void {
+  @Output() searchResult = new EventEmitter<any>();
+
+  constructor(private imdbService: ImdbService) { }
+
+  ngOnInit(): void { }
+
+  getPopularMovies(): void {
+    this.imdbService.searchMovies(this.search).subscribe(
+      data => {
+        this.result = data.data;
+        this.search = ''
+        this.searchResult.emit(this.result);
+      },
+      error => {
+        console.error('Error fetching popular movies', error);
+
+      }
+    );
   }
 
 }

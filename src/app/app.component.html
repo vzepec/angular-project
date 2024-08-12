@@ -2,7 +2,7 @@
 <div class="toolbar" role="banner">
   <img width="40px" alt="IMDB Logo"
     src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/171_Imdb_logo_logos-512.png" />
-  <app-search-movies></app-search-movies>
+  <app-search-movies (searchResult)="onSearchResult($event)"></app-search-movies>
 </div>
 <div class="content" role="main">
   <h1>Popular Movies</h1>

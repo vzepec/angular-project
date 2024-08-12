@@ -199,30 +199,43 @@ svg#clouds {
     background-color: #221a1a;
     color: white;
     font-weight: 600;
+
 }
 
 .card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 16px;
-    gap: 60px;
+    margin-top: 50px;
+    gap: 30px;
+    padding: 0 16px;
+    width: 1600px;
 }
+
 
 .card {
     border-radius: 30px;
     border: 1px solid #eee;
-    width: 300px;
-    height: 500px;
+    width: 100%;
+    /* Cambia a 100% para que ocupe todo el ancho disponible */
+    max-width: 300px;
+    /* Define un ancho máximo */
+    height: auto;
+    /* Ajusta la altura automáticamente */
     box-shadow: 7px 5px 5px rgb(189, 189, 189);
     background-color: lightgray;
     color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .card img {
-    width: 332px;
-    height: 460px;
-    object-fit: fill;
+    width: auto;
+    /* Ajusta el ancho al 100% del contenedor */
+    height: auto;
+    /* Ajusta la altura automáticamente para mantener la proporción */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el área del contenedor sin distorsionarse */
     display: block;
 }
 
@@ -236,26 +249,17 @@ svg#clouds {
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
-
-    .card-container>*:not(.circle-link),
-    .terminal {
-        width: 100%;
+    .card-container {
+        gap: 10px;
+        width: 600px;
     }
 
-    .card:not(.highlight-card) {
-        height: 16px;
-        margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-        margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-        right: 120px;
-        transform: rotate(-5deg);
+    .card {
+        max-width: 30%;
+        height: auto;
     }
 }
+
 
 @media screen and (max-width: 575px) {
     svg#rocket-smoke {

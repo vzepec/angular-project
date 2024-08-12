@@ -1,48 +1,21 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img width="40" alt="Angular Logo"
+  <img width="40px" alt="IMDB Logo"
     src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/171_Imdb_logo_logos-512.png" />
-  <!-- <div class="spacer"></div> -->
   <app-search-movies></app-search-movies>
 </div>
 
 <div class="content" role="main">
-
-  <!-- Resources -->
   <h1>Popular Movies</h1>
-
   <div class="card-container">
-    <mat-card class="card" appearance="outlined">
-      <img mat-card-image
-        src="https://m.media-amazon.com/images/M/MV5BZDQxMTY3NTAtMzYwYi00Y2U3LThkYmQtOTljY2I4ZmJiZGIzXkEyXkFqcGdeQXVyMTU1NzY5NTky._V1_.jpg">
+    <mat-card *ngFor="let movie of popularMovies?.slice(0, 8)" class="card" appearance="outlined">
+      <img mat-card-image [src]="movie.title.primaryImage.imageUrl">
       <mat-card-content>
-        <h3 class="text_center">
-          Indiana Jones and the Dial of Destiny
-        </h3>
-        <p class="text_center">
-          6.8
-        </p>
+        <h3 class="text_center">{{ movie.title.titleText.text }}</h3>
+        <p class="text_center">{{ movie.title.ratingsSummary.aggregateRating }}</p>
       </mat-card-content>
     </mat-card>
-
-    <mat-card class="card" appearance="outlined">
-      <img mat-card-image
-        src="https://m.media-amazon.com/images/M/MV5BNTAwNWQ1ZjQtZDFmMC00YjNlLWFlNjItMjJlYzZkMjJlNzkyXkEyXkFqcGdeQXVyNzc0MTgzMzU@._V1_.jpg">
-      <mat-card-content>
-        <h3 class="text_center">
-          Sound of Freedom
-        </h3>
-        <p class="text_center">
-          8.6
-        </p>
-
-      </mat-card-content>
-    </mat-card>
-
   </div>
-
-
 </div>
-
 
 <router-outlet></router-outlet>

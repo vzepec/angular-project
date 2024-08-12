@@ -426,3 +426,43 @@ export const MOCK_POPULAR_MOVIES = {
   }
 };
 
+export const MOCK_SEARCH_MOVIE = {
+  data: [
+    {
+      id: 'tt0126029',
+      qid: 'movie',
+      title: 'Shrek',
+      year: 2001,
+      stars: 'Mike Myers, Eddie Murphy',
+      q: 'feature',
+      image: 'https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg'
+    },
+    {
+      id: 'tt0298148',
+      qid: 'movie',
+      title: 'Shrek 2',
+      year: 2004,
+      stars: 'Mike Myers, Eddie Murphy',
+      q: 'feature',
+      image: 'https://m.media-amazon.com/images/M/MV5BMDJhMGRjN2QtNDUxYy00NGM3LThjNGQtMmZiZTRhNjM4YzUxL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg'
+    },
+    {
+      id: 'tt0413267',
+      qid: 'movie',
+      title: 'Shrek the Third',
+      year: 2007,
+      stars: 'Mike Myers, Cameron Diaz',
+      q: 'feature',
+      image: 'https://m.media-amazon.com/images/M/MV5BOTgyMjc3ODk2MV5BMl5BanBnXkFtZTcwMjY0MjEzMw@@._V1_.jpg'
+    },
+    {
+      id: 'tt0413267',
+      qid: 'movie',
+      title: 'Shrek 5',
+      year: 2026,
+      stars: 'Mike Myers, Cameron Diaz',
+      q: 'feature',
+    },
+  ]
+}
+

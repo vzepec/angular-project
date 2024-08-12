@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ImdbService } from '../services/imdb.service';
+import { Movie } from '../models/movie.model'
 
 @Component({
   selector: 'app-search-movies',
@@ -21,7 +22,36 @@ export class SearchMoviesComponent implements OnInit {
   getPopularMovies(): void {
     this.imdbService.searchMovies(this.search).subscribe(
       data => {
-        this.result = data.data;
+        console.log(data);
+        this.result = data.data.map((movieData: any) => {
+          return new Movie(
+            movieData.title,
+            movieData.year,
+            movieData.image
+          );
+        });
+        this.search = ''
+        this.searchResult.emit(this.result);
+      },
+      error => {
+        console.error('Error fetching popular movies', error);
+
+      }
+    );
+  }
+
+  getPopularMoviesMock(): void {
+    this.imdbService.searchMoviesMock(this.search).subscribe(
+      data => {
+        console.log(data);
+
+        this.result = data.data.map((movieData: any) => {
+          return new Movie(
+            movieData.title,
+            movieData.year,
+            movieData.image
+          );
+        });
         this.search = ''
         this.searchResult.emit(this.result);
       },

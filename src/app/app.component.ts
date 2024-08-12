@@ -15,19 +15,24 @@ export class AppComponent {
   constructor(private imdbService: ImdbService) { }
 
   ngOnInit(): void {
-    this.getPopularMovies()
+    this.getPopularMoviesMock()
   }
 
   onSearchResult(result: any): void {
-    this.searchResult = result;
-    console.log('Search result received in AppComponent:', this.searchResult);
+    this.popularMovies = result;
+    console.log('Search result received in AppComponent:', this.popularMovies);
   }
 
   getPopularMovies(): void {
     this.imdbService.getPopularMovies().subscribe(
       data => {
-        this.popularMovies = data.data.list;
-        console.log(this.popularMovies);
+        this.popularMovies = data.data.list.map((movieData: any) => {
+          return new Movie(
+            movieData.title.titleText.text,
+            movieData.title.releaseYear.year,
+            movieData.title.primaryImage.imageUrl
+          );
+        });
         this.isLoading = false;
       },
       error => {
@@ -35,5 +40,28 @@ export class AppComponent {
         this.isLoading = false;
       }
     );
+  }
+
+  getPopularMoviesMock(): void {
+    this.imdbService.getPopularMoviesMock().subscribe(
+      data => {
+        this.popularMovies = data.data.list.map((movieData: any) => {
+          return new Movie(
+            movieData.title.titleText.text,
+            movieData.title.releaseYear.year,
+            movieData.title.primaryImage.imageUrl
+          );
+        });
+        this.isLoading = false;
+      },
+      error => {
+        console.error('Error fetching popular movies', error);
+        this.isLoading = false;
+      }
+    );
+  }
+
+  onLogoClick(): void {
+    this.getPopularMoviesMock()
   }
 }

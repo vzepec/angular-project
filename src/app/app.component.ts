@@ -10,6 +10,7 @@ import { ImdbService } from './services/imdb.service';
 export class AppComponent {
   title = 'angular-project';
   popularMovies: any;
+  isLoading = true;
 
   constructor(private imdbService: ImdbService) { }
 
@@ -22,9 +23,11 @@ export class AppComponent {
       data => {
         this.popularMovies = data.data.list;
         console.log(this.popularMovies);
+        this.isLoading = false;
       },
       error => {
         console.error('Error fetching popular movies', error);
+        this.isLoading = false;
       }
     );
   }

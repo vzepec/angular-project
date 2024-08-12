@@ -247,6 +247,18 @@ svg#clouds {
     text-align: justify;
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28%;
+}
+
+.spinner-color ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #000000;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
     .card-container {

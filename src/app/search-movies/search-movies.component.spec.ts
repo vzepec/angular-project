@@ -38,7 +38,7 @@ describe('SearchMoviesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getPopularMovies and emit searchResult on success', () => {
+  it('llamado a getPopularMovies y emit searchResult on success', () => {
     const mockData = {
       data: [
         { id: '1', title: 'Movie 1', year: "2023", image: 'image1.jpg' },
@@ -63,7 +63,7 @@ describe('SearchMoviesComponent', () => {
     expect(component.searchResult.emit).toHaveBeenCalledWith(expectedResult);
   });
 
-  it('should call getPopularMovies and handle error', () => {
+  it('llamado a getPopularMovies y manejo de error', () => {
     const mockError = new Error('Error fetching movies');
 
     component.search = 'test';

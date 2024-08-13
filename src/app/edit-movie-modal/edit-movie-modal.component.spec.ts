@@ -31,16 +31,16 @@ describe('EditMovieModalComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the movie property with a clone of the data.movie', () => {
+  it('Inicializa movie con un clon de data.movie', () => {
     expect(component.movie).toEqual(component.data.movie);
   });
 
-  it('should call dialogRef.close() when onCancel is called', () => {
+  it('llamado a dialogRef.close() cuando onCancel es ejecutado', () => {
     component.onCancel();
     expect(dialogRefMock.close).toHaveBeenCalled();
   });
 
-  it('should call dialogRef.close() with the movie object when onSave is called', () => {
+  it('llamado a dialogRef.close() con el objeto movie cuando onSave es ejecutado', () => {
     const updatedTitle = 'Updated Movie Title';
     component.movie.title = updatedTitle;
     component.onSave();
@@ -51,7 +51,7 @@ describe('EditMovieModalComponent', () => {
     );
   });
 
-  it('should format the title correctly', () => {
+  it('formateo del titulo', () => {
     const formattedTitle = component.formatTitle("test movie");
     expect(formattedTitle).toBe("Test Movie");
   });

@@ -72,7 +72,6 @@ export class AppComponent {
           );
         });
         console.log(this.popularMovies);
-
         this.isLoading = false;
       },
       error => {
@@ -95,7 +94,7 @@ export class AppComponent {
       console.log(result);
       if (result) {
         console.log("se agrega peli");
-          this.popularMovies.push(result)
+        this.popularMovies.unshift(result)
         console.log(this.popularMovies);
 
       }

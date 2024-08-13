@@ -11,9 +11,10 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class AddMovieModalComponent implements OnInit {
   movie = new Movie(uuidv4(), "", "", ""); // Se genera ID
-
+  currentYear = new Date().getFullYear();
   constructor(
     public dialogRef: MatDialogRef<AddMovieModalComponent>) {
+
   }
 
   onCancel(): void {

@@ -9,6 +9,7 @@ import { cloneDeep } from 'lodash';
 })
 export class EditMovieModalComponent {
   movie: any;
+  currentYear = new Date().getFullYear();
 
   constructor(
     public dialogRef: MatDialogRef<EditMovieModalComponent>,

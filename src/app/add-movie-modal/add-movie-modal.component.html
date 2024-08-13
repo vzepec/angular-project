@@ -1,22 +1,29 @@
 <div class="modal-container">
-    <h2>Add Movie</h2>
+    <h2>Agregar Película</h2>
     <hr class="separator" />
     <form (ngSubmit)="onSave()" #movieForm="ngForm">
         <mat-form-field appearance="fill">
-            <mat-label>Title</mat-label>
+            <mat-label>Título</mat-label>
             <input matInput [(ngModel)]="movie.title" name="title" required />
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Year</mat-label>
-            <input matInput [(ngModel)]="movie.year" name="year" required />
+            <mat-label>Año</mat-label>
+            <input matInput type="number" [(ngModel)]="movie.year" name="year" #year="ngModel" required min="1900"
+                max="{{ currentYear }}" />
+            <mat-error *ngIf="year.invalid && (year.dirty || year.touched)">
+                <ng-container *ngIf="year.errors?.['required']">El año es requerido.</ng-container>
+                <ng-container *ngIf="year.errors?.['min']">El año debe ser superior a 1900.</ng-container>
+                <ng-container *ngIf="year.errors?.['max']">El año debe ser menor o igual a
+                    {{currentYear}}</ng-container>
+            </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Image URL (jpg)</mat-label>
+            <mat-label>URL de Imagen (jpg)</mat-label>
             <input matInput [(ngModel)]="movie.img" name="img" />
         </mat-form-field>
         <div class="modal-actions">
-            <button mat-button type="button" (click)="onCancel()">Cancel</button>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!movieForm.valid">Save</button>
+            <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!movieForm.valid">Guardar</button>
         </div>
     </form>
 </div>

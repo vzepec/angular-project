@@ -28,9 +28,10 @@ export class AppComponent {
       data => {
         this.popularMovies = data.data.list.map((movieData: any) => {
           return new Movie(
+            movieData.title.id,
             movieData.title.titleText.text,
             movieData.title.releaseYear.year,
-            movieData.title.primaryImage.imageUrl
+            movieData.title.primaryImage.imageUrl,
           );
         });
         this.isLoading = false;
@@ -47,11 +48,14 @@ export class AppComponent {
       data => {
         this.popularMovies = data.data.list.map((movieData: any) => {
           return new Movie(
+            movieData.title.id,
             movieData.title.titleText.text,
             movieData.title.releaseYear.year,
             movieData.title.primaryImage.imageUrl
           );
         });
+        console.log(this.popularMovies);
+
         this.isLoading = false;
       },
       error => {
@@ -63,5 +67,12 @@ export class AppComponent {
 
   onLogoClick(): void {
     this.getPopularMoviesMock()
+  }
+
+  onEdit(id: string) {
+
+  }
+  onDelete(id: string) {
+
   }
 }

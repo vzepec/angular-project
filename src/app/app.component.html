@@ -6,7 +6,7 @@
   <app-search-movies (searchResult)="onSearchResult($event)"></app-search-movies>
 </div>
 <div class="content" role="main">
-  <h1>Popular Movies</h1>
+  <h1 class="title">Popular Movies</h1>
   <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie">movie</mat-icon>
 
   <div *ngIf="isLoading" class="loading-container spinner spinner-color">
@@ -15,15 +15,31 @@
   <div class="card-container">
     <div *ngIf="!isLoading && popularMovies?.length > 0" class="card-container">
       <mat-card *ngFor="let movie of popularMovies?.slice(0, 8)" class="card" appearance="outlined">
-        <img mat-card-image [src]="movie.img">
+        <div class="card-image-container">
+          <img mat-card-image [src]="movie.img">
+        </div>
         <mat-card-content>
           <h3 class="text_center">{{ movie.title }}</h3>
           <p class="text_center">{{ movie.year }}</p>
+          <div class="icon-container spacer">
+            <button mat-icon-button (click)="onEdit(movie.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDelete(movie.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
   <p *ngIf="!isLoading && popularMovies?.length === 0"></p>
+
+  <footer>
+    Author&nbsp;
+    <a href="https://github.com/vzepec/angular-project/tree/master" target="_blank" rel="noopener"> Victor Z.
+    </a>
+  </footer>
 </div>
 
 <router-outlet></router-outlet>

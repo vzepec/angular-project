@@ -25,6 +25,7 @@ export class SearchMoviesComponent implements OnInit {
         console.log(data);
         this.result = data.data.map((movieData: any) => {
           return new Movie(
+            movieData.id,
             movieData.title,
             movieData.year,
             movieData.image
@@ -47,6 +48,7 @@ export class SearchMoviesComponent implements OnInit {
 
         this.result = data.data.map((movieData: any) => {
           return new Movie(
+            movieData.id,
             movieData.title,
             movieData.year,
             movieData.image

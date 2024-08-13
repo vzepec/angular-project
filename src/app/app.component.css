@@ -20,8 +20,9 @@ p {
     margin: 0;
 }
 
-.spacer {
-    flex: 1;
+.title {
+    margin-top: 50px;
+    font-size: 45px;
 }
 
 
@@ -206,7 +207,7 @@ svg#clouds {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
     gap: 30px;
     padding: 0 16px;
     width: 1600px;
@@ -214,14 +215,13 @@ svg#clouds {
 
 
 .card {
+    position: relative;
+    overflow: hidden;
     border-radius: 30px;
     border: 1px solid #eee;
     width: 100%;
-    /* Cambia a 100% para que ocupe todo el ancho disponible */
     max-width: 300px;
-    /* Define un ancho máximo */
     height: auto;
-    /* Ajusta la altura automáticamente */
     box-shadow: 7px 5px 5px rgb(189, 189, 189);
     background-color: lightgray;
     color: black;
@@ -230,12 +230,8 @@ svg#clouds {
 }
 
 .card img {
-    width: auto;
-    /* Ajusta el ancho al 100% del contenedor */
     height: auto;
-    /* Ajusta la altura automáticamente para mantener la proporción */
     object-fit: cover;
-    /* Asegura que la imagen cubra el área del contenedor sin distorsionarse */
     display: block;
 }
 
@@ -259,7 +255,35 @@ svg#clouds {
     stroke: #000000;
 }
 
-/* Responsive Styles */
+.card-image-container {
+    position: relative;
+}
+
+.icon-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+}
+
+footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    height: 105px;
+}
+
+mat-icon-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+mat-icon {
+    color: black;
+}
+
 @media screen and (max-width: 767px) {
     .card-container {
         gap: 10px;

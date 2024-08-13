@@ -13,12 +13,14 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditMovieModalComponent } from './edit-movie-modal/edit-movie-modal.component';
+import { AddMovieModalComponent } from './add-movie-modal/add-movie-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchMoviesComponent,
     EditMovieModalComponent,
+    AddMovieModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,14 +10,14 @@
     <mat-spinner></mat-spinner>
   </div>
   <div *ngIf="!isLoading" class="spacer">
-    <button mat-icon-button class="add-button">
+    <button mat-icon-button class="add-button" (click)="onAdd()">
       <mat-icon>add</mat-icon>
     </button>
     
   </div>
   <div class="card-container">
     <div *ngIf="!isLoading && popularMovies?.length > 0" class="card-container">
-      <mat-card *ngFor="let movie of popularMovies?.slice(0, 8)" class="card" appearance="outlined">
+      <mat-card *ngFor="let movie of popularMovies?.slice(0, 9)" class="card" appearance="outlined">
         <div class="card-image-container">
           <img mat-card-image [src]="movie.img">
         </div>

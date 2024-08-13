@@ -4,6 +4,8 @@ import { Movie } from './models/movie.model'
 import { delay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EditMovieModalComponent } from './edit-movie-modal/edit-movie-modal.component';
+import { AddMovieModalComponent } from './add-movie-modal/add-movie-modal.component';
+
 import { cloneDeep } from 'lodash';
 
 @Component({
@@ -82,6 +84,22 @@ export class AppComponent {
 
   onLogoClick(): void {
     this.getPopularMoviesMock()
+  }
+
+  onAdd(): void {
+    const dialogRef = this.dialog.open(AddMovieModalComponent, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        console.log("se agrega peli");
+          this.popularMovies.push(result)
+        console.log(this.popularMovies);
+
+      }
+    });
   }
 
   onEdit(id: string): void {

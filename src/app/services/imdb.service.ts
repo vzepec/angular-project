@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { MOCK_POPULAR_MOVIES, MOCK_SEARCH_MOVIE } from '../mocks/mock-data';
+import { MovieServiceInterface } from '../interface/movie.service.interface';
 
 const API_BASE_URL = 'https://imdb188.p.rapidapi.com/api/v1';
 const GET_POPULAR_MOVIES_URL = `${API_BASE_URL}/getPopularMovies`;
@@ -10,7 +11,7 @@ const SEARCH_MOVIES_URL = `${API_BASE_URL}/searchIMDB`;
 @Injectable({
   providedIn: 'root'
 })
-export class ImdbService {
+export class ImdbService implements MovieServiceInterface {
 
 
   private headers = new HttpHeaders({

@@ -17,6 +17,7 @@
     border: none;
     padding: 0px;
     color: #000;
+    border-radius: 20px;
 }
 
 ::ng-deep .mat-dialog-title,

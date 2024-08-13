@@ -15,15 +15,24 @@ export class EditMovieModalComponent {
     public dialogRef: MatDialogRef<EditMovieModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.movie = cloneDeep(data.movie); // Usa data directamente
+    this.movie = cloneDeep(data.movie);
   }
 
   onCancel(): void {
-    this.dialogRef.close(); // No se envía ningún dato al cerrar
+    this.dialogRef.close();
   }
 
   onSave(): void {
+    this.movie.title = this.formatTitle(this.movie.title)
     this.dialogRef.close(this.movie); // Devuelve la película editada
+  }
+
+  private formatTitle(title: string): string {
+    return title
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 }
 

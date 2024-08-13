@@ -22,10 +22,19 @@ export class AddMovieModalComponent implements OnInit {
   }
 
   onSave(): void {
+    this.movie.title = this.formatTitle(this.movie.title)
     this.dialogRef.close(this.movie); // Devuelve la película editada
   }
 
   ngOnInit(): void {
+  }
+
+  private formatTitle(title: string): string {
+    return title
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
 }

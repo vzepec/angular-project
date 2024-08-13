@@ -213,19 +213,25 @@ svg#clouds {
     width: 150%;
 }
 
- .add-button {
-  font-size: 24px; /* Ajusta el tamaño del icono */
-  width: 60px; /* Ajusta el ancho del botón */
-  height: 60px; /* Ajusta la altura del botón */
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%; /* Hace que el botón sea redondo */
-  padding: 0; /* Elimina el padding por defecto */
+.add-button {
+    font-size: 24px;
+    /* Ajusta el tamaño del icono */
+    width: 60px;
+    /* Ajusta el ancho del botón */
+    height: 60px;
+    /* Ajusta la altura del botón */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    /* Hace que el botón sea redondo */
+    padding: 0;
+    /* Elimina el padding por defecto */
 }
 
 .add-button mat-icon {
-  font-size: 36px; /* Ajusta el tamaño del icono dentro del botón */
-  width: 55%;
+    font-size: 36px;
+    /* Ajusta el tamaño del icono dentro del botón */
+    width: 55%;
 }
 
 
@@ -272,10 +278,20 @@ svg#clouds {
 }
 
 .card-image-container {
-    position: relative;
+    width: 380px;
+    height: 530px;
+    justify-content: center;
+    align-items: center;
 }
 
-.spacer{
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Hace que la imagen se ajuste al contenedor, recortando si es necesario */
+}
+
+.spacer {
     margin-top: 10px;
     width: 100%;
     text-align: end;

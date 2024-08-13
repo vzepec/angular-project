@@ -29,7 +29,7 @@ export class AddMovieModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private formatTitle(title: string): string {
+  formatTitle(title: string): string {
     return title
       .toLowerCase()
       .split(' ')

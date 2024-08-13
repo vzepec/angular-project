@@ -46,7 +46,9 @@ export class SearchMoviesComponent implements OnInit {
     this.removeInputFocus();
   }
 
-  getPopularMoviesMock(): void {
+  // Metodo Mock de desarrollo para simular llamado a API
+
+  /* getPopularMoviesMock(): void {
     this.imdbService.searchMoviesMock(this.search).subscribe(
       data => {
         console.log(data);
@@ -68,6 +70,6 @@ export class SearchMoviesComponent implements OnInit {
       }
     );
     this.removeInputFocus();
-  }
+  } */
 
 }

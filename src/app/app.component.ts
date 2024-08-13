@@ -70,6 +70,8 @@ export class AppComponent {
     );
   }
 
+  // Metodo Mock de desarrollo para simular llamado a API
+
   /* getPopularMoviesMock(): void {
     this.isLoading = true;
     this.popularMovies = [];

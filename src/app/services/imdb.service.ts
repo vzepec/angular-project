@@ -26,18 +26,20 @@ export class ImdbService implements MovieServiceInterface {
     return this.http.post<any>(GET_POPULAR_MOVIES_URL, {}, { headers: this.headers });
   }
 
-  getPopularMoviesMock(): Observable<any> {
-    return of(MOCK_POPULAR_MOVIES);
-  }
-
-
   searchMovies(query: string): Observable<any> {
     const params = new HttpParams().set('query', query);
     return this.http.get<any>(SEARCH_MOVIES_URL, { headers: this.headers, params });
   }
 
-  searchMoviesMock(query: string): Observable<any> {
+  // Metodos Mock de desarrollo para simular llamado a API
+
+  /*  getPopularMoviesMock(): Observable<any> {
+    return of(MOCK_POPULAR_MOVIES);
+  } */
+
+
+  /* searchMoviesMock(query: string): Observable<any> {
     return of(MOCK_SEARCH_MOVIE)
   }
-
+ */
 }

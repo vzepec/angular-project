@@ -27,7 +27,7 @@ export class EditMovieModalComponent {
     this.dialogRef.close(this.movie); // Devuelve la película editada
   }
 
-  private formatTitle(title: string): string {
+  formatTitle(title: string): string {
     return title
       .toLowerCase()
       .split(' ')

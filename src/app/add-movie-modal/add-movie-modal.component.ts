@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Movie } from '../models/movie.model'
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-add-movie-modal',
@@ -8,13 +10,8 @@ import { Movie } from '../models/movie.model'
   styleUrls: ['./add-movie-modal.component.css']
 })
 export class AddMovieModalComponent implements OnInit {
-  movie = new Movie(
-    "",
-    "",
-    "",
-    ""
-  );
-  
+  movie = new Movie(uuidv4(), "", "", ""); // Se genera ID
+
   constructor(
     public dialogRef: MatDialogRef<AddMovieModalComponent>) {
   }

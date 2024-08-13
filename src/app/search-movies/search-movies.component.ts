@@ -24,12 +24,7 @@ export class SearchMoviesComponent implements OnInit {
       data => {
         console.log(data);
         this.result = data.data.map((movieData: any) => {
-          return new Movie(
-            movieData.id,
-            movieData.title,
-            movieData.year,
-            movieData.image
-          );
+          return new Movie(movieData.id, movieData.title, movieData.year, movieData.image);
         });
         this.search = ''
         this.searchResult.emit(this.result);

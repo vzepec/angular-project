@@ -18,6 +18,7 @@ export class AppComponent {
   popularMovies: any;
   searchResult: any;
   isLoading = true;
+  imageNotFound = 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg'
 
   constructor(private imdbService: ImdbService, public dialog: MatDialog) { }
 
@@ -25,11 +26,20 @@ export class AppComponent {
     this.getPopularMoviesMock()
   }
 
+  verifyImage(movies: Movie[]): void {
+    movies.forEach(movie => {
+      if (!movie.img || movie.img.trim() === "") {
+        movie.img = this.imageNotFound;
+      }
+    });
+  }
+
   onSearchResult(result: any): void {
     this.popularMovies = []
     this.isLoading = true
     this.popularMovies = result;
     if (this.popularMovies) {
+      this.verifyImage(this.popularMovies)
       this.isLoading = false
     }
   }
@@ -47,6 +57,7 @@ export class AppComponent {
             movieData.title.primaryImage.imageUrl,
           );
         });
+        this.verifyImage(this.popularMovies)
         this.isLoading = false;
       },
       error => {

@@ -17,8 +17,9 @@ export class AppComponent {
   title = 'angular-project';
   popularMovies: any;
   searchResult: any;
-  isLoading = true;
-  imageNotFound = 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg'
+  public isLoading = true;
+  private readonly imageNotFound = 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg';
+  private readonly imagePattern = /^https?:\/\/.*jpg/i;
 
   constructor(private imdbService: ImdbService, public dialog: MatDialog) { }
 
@@ -29,6 +30,9 @@ export class AppComponent {
   verifyImage(movies: Movie[]): void {
     movies.forEach(movie => {
       if (!movie.img || movie.img.trim() === "") {
+        movie.img = this.imageNotFound;
+      }
+      else if (!this.imagePattern.test(movie.img)) {
         movie.img = this.imageNotFound;
       }
     });
@@ -104,10 +108,9 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result) {
-        console.log("se agrega peli");
         this.popularMovies.unshift(result)
+        this.verifyImage(this.popularMovies)
         console.log(this.popularMovies);
-
       }
     });
   }
@@ -128,6 +131,7 @@ export class AppComponent {
         if (index > -1) {
           this.popularMovies[index] = result;
         }
+        this.verifyImage(this.popularMovies)
       }
     });
   }

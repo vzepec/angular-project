@@ -1,7 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
 import { ImdbService } from './services/imdb.service';
 import { Movie } from './models/movie.model'
-import { delay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EditMovieModalComponent } from './edit-movie-modal/edit-movie-modal.component';
 import { AddMovieModalComponent } from './add-movie-modal/add-movie-modal.component';
@@ -18,13 +17,13 @@ export class AppComponent {
   popularMovies: any;
   searchResult: any;
   public isLoading = true;
-  private readonly imageNotFound = 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg';
-  private readonly imagePattern = /^https?:\/\/.*jpg/i;
+  readonly imageNotFound = 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg';
+  readonly imagePattern = /^https?:\/\/.*jpg/i;
 
   constructor(private imdbService: ImdbService, public dialog: MatDialog, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.getPopularMoviesMock()
+    this.getPopularMovies()
   }
 
   verifyImage(movies: Movie[]): void {
@@ -71,7 +70,7 @@ export class AppComponent {
     );
   }
 
-  getPopularMoviesMock(): void {
+  /* getPopularMoviesMock(): void {
     this.isLoading = true;
     this.popularMovies = [];
     this.imdbService.getPopularMoviesMock().pipe(
@@ -94,10 +93,10 @@ export class AppComponent {
         this.isLoading = false;
       }
     );
-  }
+  } */
 
   onLogoClick(): void {
-    this.getPopularMoviesMock()
+    this.getPopularMovies()
   }
 
   onAdd(): void {
@@ -149,7 +148,7 @@ export class AppComponent {
     this.removeButtonFocus('.delete-button');
   }
 
-  private removeButtonFocus(buttonHtml: string): void {
+  removeButtonFocus(buttonHtml: string): void {
     const button = document.querySelector(buttonHtml) as HTMLElement;
     if (button) {
       this.renderer.setAttribute(button, 'tabindex', '-1');

@@ -1,9 +1,13 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img width="40px" alt="IMDB Logo"
-    src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/171_Imdb_logo_logos-512.png"
-    (click)="onLogoClick()" />
-  <app-search-movies (searchResult)="onSearchResult($event)"></app-search-movies>
+  <button mat-icon-button (click)="onLogoClick()">
+    <img class="logo-img" alt="IMDB Logo"
+      src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/171_Imdb_logo_logos-512.png" />
+  </button>
+  <div class="search-input">
+    <app-search-movies (searchResult)="onSearchResult($event)"></app-search-movies>
+  </div>
+
 </div>
 <div class="content" role="main">
   <div *ngIf="isLoading" class="loading-container spinner spinner-color">
@@ -13,7 +17,7 @@
     <button mat-icon-button class="add-button" (click)="onAdd()">
       <mat-icon>add</mat-icon>
     </button>
-    
+
   </div>
   <div class="card-container">
     <div *ngIf="!isLoading && popularMovies?.length > 0" class="card-container">
@@ -21,7 +25,7 @@
         <div class="card-image-container">
           <img mat-card-image [src]="movie.img">
         </div>
-        <mat-card-content>
+        <mat-card-content class="card-content">
           <h3 class="text_center">{{ movie.title }}</h3>
           <p class="text_center">{{ movie.year }}</p>
           <div class="icon-container">

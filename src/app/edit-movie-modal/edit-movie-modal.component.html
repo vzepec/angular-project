@@ -1,0 +1,21 @@
+<div class="modal-container">
+    <h2>Edit Movie</h2>
+    <form (ngSubmit)="onSave()">
+        <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput [(ngModel)]="movie.title" name="title" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Year</mat-label>
+            <input matInput [(ngModel)]="movie.year" name="year" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Image URL</mat-label>
+            <input matInput [(ngModel)]="movie.img" name="img" required />
+        </mat-form-field>
+        <div class="modal-actions">
+            <button mat-button (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>

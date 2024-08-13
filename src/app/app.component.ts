@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ImdbService } from './services/imdb.service';
 import { Movie } from './models/movie.model'
 import { delay } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { EditMovieModalComponent } from './edit-movie-modal/edit-movie-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,7 @@ export class AppComponent {
   searchResult: any;
   isLoading = true;
 
-  constructor(private imdbService: ImdbService) { }
+  constructor(private imdbService: ImdbService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getPopularMoviesMock()
@@ -81,8 +83,22 @@ export class AppComponent {
     this.getPopularMoviesMock()
   }
 
-  onEdit(id: string) {
+  onEdit(id: string): void {
+    const movie = this.popularMovies.find((m: any) => m.id === id);
 
+    const dialogRef = this.dialog.open(EditMovieModalComponent, {
+      width: '500px',
+      data: { movie }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const index = this.popularMovies.findIndex((m: any) => m.id === id);
+        if (index > -1) {
+          this.popularMovies[index] = result;
+        }
+      }
+    });
   }
   onDelete(id: string) {
 

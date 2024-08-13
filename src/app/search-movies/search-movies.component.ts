@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { ImdbService } from '../services/imdb.service';
 import { Movie } from '../models/movie.model'
 
@@ -13,11 +13,20 @@ export class SearchMoviesComponent implements OnInit {
   search = '';
   result = '';
 
+  @ViewChild('searchInput') searchInput!: ElementRef;
   @Output() searchResult = new EventEmitter<any>();
 
-  constructor(private imdbService: ImdbService) { }
+  constructor(private imdbService: ImdbService, private renderer: Renderer2) { }
 
   ngOnInit(): void { }
+
+  private removeInputFocus(): void {
+    setTimeout(() => {
+      if (this.searchInput) {
+        this.searchInput.nativeElement.blur(); // Eliminar el foco del input
+      }
+    }, 0);
+  }
 
   getPopularMovies(): void {
     this.imdbService.searchMovies(this.search).subscribe(
@@ -34,6 +43,7 @@ export class SearchMoviesComponent implements OnInit {
 
       }
     );
+    this.removeInputFocus();
   }
 
   getPopularMoviesMock(): void {
@@ -57,6 +67,7 @@ export class SearchMoviesComponent implements OnInit {
 
       }
     );
+    this.removeInputFocus();
   }
 
 }

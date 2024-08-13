@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ImdbService } from './services/imdb.service';
 import { Movie } from './models/movie.model'
 import { delay } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditMovieModalComponent } from './edit-movie-modal/edit-movie-modal.component';
 import { AddMovieModalComponent } from './add-movie-modal/add-movie-modal.component';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep, String } from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent {
   private readonly imageNotFound = 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg';
   private readonly imagePattern = /^https?:\/\/.*jpg/i;
 
-  constructor(private imdbService: ImdbService, public dialog: MatDialog) { }
+  constructor(private imdbService: ImdbService, public dialog: MatDialog, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.getPopularMoviesMock()
@@ -112,7 +112,9 @@ export class AppComponent {
         this.verifyImage(this.popularMovies)
         console.log(this.popularMovies);
       }
+      this.removeButtonFocus('.add-button');
     });
+
   }
 
   onEdit(id: string): void {
@@ -133,6 +135,7 @@ export class AppComponent {
         }
         this.verifyImage(this.popularMovies)
       }
+      this.removeButtonFocus('.edit-button');
     });
   }
   onDelete(id: string): void {
@@ -142,6 +145,16 @@ export class AppComponent {
         // Elimina la película de la lista
         this.popularMovies.splice(index, 1);
       }
+    }
+    this.removeButtonFocus('.delete-button');
+  }
+
+  private removeButtonFocus(buttonHtml: string): void {
+    const button = document.querySelector(buttonHtml) as HTMLElement;
+    if (button) {
+      this.renderer.setAttribute(button, 'tabindex', '-1');
+      button.blur();
+      this.renderer.removeAttribute(button, 'tabindex');
     }
   }
 }

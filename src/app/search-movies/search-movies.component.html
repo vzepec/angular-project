@@ -1,6 +1,6 @@
 <mat-form-field class="white-text">
     <span matPrefix></span>
-    <input type="tel" matInput placeholder="Buscar Película" name="search" [(ngModel)]="search"
+    <input #searchInput type="tel" matInput placeholder="Buscar Película" name="search" [(ngModel)]="search"
         (keyup.enter)="getPopularMoviesMock()">
     <mat-icon matSuffix (click)="getPopularMoviesMock()">search</mat-icon>
 </mat-form-field>

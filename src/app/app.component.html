@@ -29,10 +29,10 @@
           <h3 class="text_center">{{ movie.title }}</h3>
           <p class="text_center">{{ movie.year }}</p>
           <div class="icon-container">
-            <button mat-icon-button (click)="onEdit(movie.id)">
+            <button mat-icon-button class="edit-button" (click)="onEdit(movie.id)">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="onDelete(movie.id)">
+            <button mat-icon-button class="delete-button" (click)="onDelete(movie.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

@@ -20,7 +20,7 @@ export class SearchMoviesComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  private removeInputFocus(): void {
+  removeInputFocus(): void {
     setTimeout(() => {
       if (this.searchInput) {
         this.searchInput.nativeElement.blur(); // Eliminar el foco del input
@@ -47,7 +47,6 @@ export class SearchMoviesComponent implements OnInit {
   }
 
   // Metodo Mock de desarrollo para simular llamado a API
-
   /* getPopularMoviesMock(): void {
     this.imdbService.searchMoviesMock(this.search).subscribe(
       data => {

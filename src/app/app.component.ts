@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ImdbService } from './services/imdb.service';
 import { Movie } from './models/movie.model'
+import { delay } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,11 +21,17 @@ export class AppComponent {
   }
 
   onSearchResult(result: any): void {
+    this.popularMovies = []
+    this.isLoading = true
     this.popularMovies = result;
-    console.log('Search result received in AppComponent:', this.popularMovies);
+    if (this.popularMovies) {
+      this.isLoading = false
+    }
   }
 
   getPopularMovies(): void {
+    this.isLoading = true;
+    this.popularMovies = []
     this.imdbService.getPopularMovies().subscribe(
       data => {
         this.popularMovies = data.data.list.map((movieData: any) => {
@@ -44,7 +52,11 @@ export class AppComponent {
   }
 
   getPopularMoviesMock(): void {
-    this.imdbService.getPopularMoviesMock().subscribe(
+    this.isLoading = true;
+    this.popularMovies = [];
+    this.imdbService.getPopularMoviesMock().pipe(
+      delay(2000)
+    ).subscribe(
       data => {
         this.popularMovies = data.data.list.map((movieData: any) => {
           return new Movie(

@@ -5,6 +5,11 @@
     max-width: 500px;
     margin: auto;
 }
+.separator {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 16px 0;
+}
 
 .modal-actions {
     display: flex;
@@ -24,4 +29,7 @@
 ::ng-deep .mat-dialog-content,
 ::ng-deep .mat-dialog-actions button {
     color: #000;
+}
+::ng-deep .mat-form-field {
+    margin-right: 4%;
 }

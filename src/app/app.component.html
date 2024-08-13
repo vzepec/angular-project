@@ -6,11 +6,14 @@
   <app-search-movies (searchResult)="onSearchResult($event)"></app-search-movies>
 </div>
 <div class="content" role="main">
-  <h1 class="title">Popular Movies</h1>
-  <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="movie">movie</mat-icon>
-
   <div *ngIf="isLoading" class="loading-container spinner spinner-color">
     <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!isLoading" class="spacer">
+    <button mat-icon-button class="add-button">
+      <mat-icon>add</mat-icon>
+    </button>
+    
   </div>
   <div class="card-container">
     <div *ngIf="!isLoading && popularMovies?.length > 0" class="card-container">
@@ -21,7 +24,7 @@
         <mat-card-content>
           <h3 class="text_center">{{ movie.title }}</h3>
           <p class="text_center">{{ movie.year }}</p>
-          <div class="icon-container spacer">
+          <div class="icon-container">
             <button mat-icon-button (click)="onEdit(movie.id)">
               <mat-icon>edit</mat-icon>
             </button>
@@ -33,9 +36,8 @@
       </mat-card>
     </div>
   </div>
-  <p *ngIf="!isLoading && popularMovies?.length === 0"></p>
 
-  <footer>
+  <footer *ngIf="!isLoading && popularMovies?.length > 0">
     Author&nbsp;
     <a href="https://github.com/vzepec/angular-project/tree/master" target="_blank" rel="noopener"> Victor Z.
     </a>

@@ -1,5 +1,6 @@
 <div class="modal-container">
     <h2>Edit Movie</h2>
+    <hr class="separator" />
     <form (ngSubmit)="onSave()">
         <mat-form-field appearance="fill">
             <mat-label>Title</mat-label>
@@ -10,7 +11,7 @@
             <input matInput [(ngModel)]="movie.year" name="year" required />
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Image URL</mat-label>
+            <mat-label>Image</mat-label>
             <input matInput [(ngModel)]="movie.img" name="img" required />
         </mat-form-field>
         <div class="modal-actions">

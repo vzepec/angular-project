@@ -207,11 +207,27 @@ svg#clouds {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 10px;
     gap: 30px;
     padding: 0 16px;
     width: 150%;
 }
+
+ .add-button {
+  font-size: 24px; /* Ajusta el tamaño del icono */
+  width: 60px; /* Ajusta el ancho del botón */
+  height: 60px; /* Ajusta la altura del botón */
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Hace que el botón sea redondo */
+  padding: 0; /* Elimina el padding por defecto */
+}
+
+.add-button mat-icon {
+  font-size: 36px; /* Ajusta el tamaño del icono dentro del botón */
+  width: 55%;
+}
+
 
 
 .card {
@@ -257,6 +273,12 @@ svg#clouds {
 
 .card-image-container {
     position: relative;
+}
+
+.spacer{
+    margin-top: 10px;
+    width: 100%;
+    text-align: end;
 }
 
 .icon-container {

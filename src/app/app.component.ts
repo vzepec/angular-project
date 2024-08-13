@@ -4,6 +4,7 @@ import { Movie } from './models/movie.model'
 import { delay } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { EditMovieModalComponent } from './edit-movie-modal/edit-movie-modal.component';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -84,7 +85,8 @@ export class AppComponent {
   }
 
   onEdit(id: string): void {
-    const movie = this.popularMovies.find((m: any) => m.id === id);
+    const movieList = cloneDeep(this.popularMovies)
+    const movie = movieList.find((m: any) => m.id === id);
 
     const dialogRef = this.dialog.open(EditMovieModalComponent, {
       width: '500px',
@@ -92,8 +94,9 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if (result) {
-        const index = this.popularMovies.findIndex((m: any) => m.id === id);
+        const index = this.popularMovies.findIndex((m: any) => m.id === result.id);
         if (index > -1) {
           this.popularMovies[index] = result;
         }

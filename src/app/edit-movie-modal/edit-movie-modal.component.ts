@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-edit-movie-modal',
@@ -13,14 +14,15 @@ export class EditMovieModalComponent {
     public dialogRef: MatDialogRef<EditMovieModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.movie = { ...data.movie }; // Clona los datos de la película
+    this.movie = cloneDeep(data.movie); // Usa data directamente
   }
 
   onCancel(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(); // No se envía ningún dato al cerrar
   }
 
   onSave(): void {
     this.dialogRef.close(this.movie); // Devuelve la película editada
   }
 }
+

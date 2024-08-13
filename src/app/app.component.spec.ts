@@ -63,7 +63,7 @@ describe('AppComponent', () => {
   });
 
   it('should update popularMovies and isLoading when onSearchResult is called', () => {
-    const searchResult: Movie[] = [
+    const searchResult = [
       { id: '1', title: 'Movie 1', year: "2020", img: 'https://example.com/image.jpg' }
     ];
 
@@ -77,7 +77,7 @@ describe('AppComponent', () => {
     const mockMovies = {
       data: {
         list: [
-          { title: { id: '1', titleText: { text: 'Movie 1' }, releaseYear: { year: 2020 }, primaryImage: { imageUrl: 'https://example.com/image.jpg' } } },
+          { title: { id: '1', titleText: { text: 'Movie 1' }, releaseYear: { year: "2020" }, primaryImage: { imageUrl: 'https://example.com/image.jpg' } } },
         ]
       }
     };
@@ -99,20 +99,21 @@ describe('AppComponent', () => {
   });
 
   it('should open AddMovieModalComponent when onAdd is called', () => {
-    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({ id: '1', title: 'New Movie', year: 2023, img: 'https://example.com/image.jpg' }) });
+    component.popularMovies = []
+    const newMovie = { id: '1', title: 'New Movie', year: 2023, img: 'https://example.com/image.jpg' };
+    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(newMovie) });
     dialogSpy.open.and.returnValue(dialogRefSpyObj);
-
     component.onAdd();
-
     expect(dialogSpy.open).toHaveBeenCalledWith(AddMovieModalComponent, { width: '500px' });
     expect(component.popularMovies.length).toBe(1);
+    expect(component.popularMovies[0]).toEqual(newMovie);
   });
 
   it('should open EditMovieModalComponent and update movie on onEdit', () => {
     const movie = new Movie('1', 'Movie 1', "2020", 'https://example.com/image.jpg');
     component.popularMovies = [movie];
 
-    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({ id: '1', title: 'Edited Movie', year: 2020, img: 'https://example.com/edited.jpg' }) });
+    const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of({ id: '1', title: 'Edited Movie', year: "2020", img: 'https://example.com/edited.jpg' }) });
     dialogSpy.open.and.returnValue(dialogRefSpyObj);
 
     component.onEdit('1');
@@ -132,15 +133,4 @@ describe('AppComponent', () => {
     expect(component.popularMovies.length).toBe(0);
   });
 
-  /* it('should remove button focus on removeButtonFocus', () => {
-    const mockButton = document.createElement('button');
-    spyOn(document, 'querySelector').and.returnValue(mockButton);
-    spyOn(mockButton, 'blur');  // Mockeamos el método blur
-
-    component.removeButtonFocus('.some-button');
-
-    expect(renderer2Spy.setAttribute).toHaveBeenCalledWith(mockButton, 'tabindex', '-1');
-    expect(mockButton.blur).toHaveBeenCalled();  // Verificamos que blur fue llamado
-    expect(renderer2Spy.removeAttribute).toHaveBeenCalledWith(mockButton, 'tabindex');
-  }); */
 });

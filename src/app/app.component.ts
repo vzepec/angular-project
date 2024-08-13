@@ -103,7 +103,13 @@ export class AppComponent {
       }
     });
   }
-  onDelete(id: string) {
-
+  onDelete(id: string): void {
+    if (confirm('Are you sure you want to delete this movie?')) {
+      const index = this.popularMovies.findIndex((m: any) => m.id === id);
+      if (index > -1) {
+        // Elimina la película de la lista
+        this.popularMovies.splice(index, 1);
+      }
+    }
   }
 }

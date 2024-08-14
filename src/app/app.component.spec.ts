@@ -41,14 +41,14 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set isLoading to true and call getPopularMovies on ngOnInit', () => {
+  it('Se setea isLoading como true y se llama a getPopularMovies en ngOnInit', () => {
     spyOn(component, 'getPopularMovies');
     component.ngOnInit();
     expect(component.isLoading).toBeTrue();
     expect(component.getPopularMovies).toHaveBeenCalled();
   });
 
-  it('should verify and set image when verifyImage is called', () => {
+  it('Se verifica y setea imagen en verifyImage()', () => {
     const movies: Movie[] = [
       { id: '1', title: 'Movie 1', year: "2020", img: '' },
       { id: '2', title: 'Movie 2', year: "2021", img: 'https://example.com/image.jpg' },
@@ -62,7 +62,7 @@ describe('AppComponent', () => {
     expect(movies[2].img).toBe(component.imageNotFound);
   });
 
-  it('should update popularMovies and isLoading when onSearchResult is called', () => {
+  it('Se actualiza popularMovies y isLoading cuando onSearchResult es llamado', () => {
     const searchResult = [
       { id: '1', title: 'Movie 1', year: "2020", img: 'https://example.com/image.jpg' }
     ];
@@ -73,7 +73,7 @@ describe('AppComponent', () => {
     expect(component.isLoading).toBeFalse();
   });
 
-  it('should fetch popular movies and update state in getPopularMovies', () => {
+  it('se obtienen peliculas populares y se actualiza el estado en getPopularMovies', () => {
     const mockMovies = {
       data: {
         list: [
@@ -90,7 +90,7 @@ describe('AppComponent', () => {
     expect(component.isLoading).toBeFalse();
   });
 
-  it('should handle error in getPopularMovies', () => {
+  it('manejo de error en getPopularMovies', () => {
     imdbServiceSpy.getPopularMovies.and.returnValue(throwError('error'));
     component.getPopularMovies();
 
@@ -98,7 +98,7 @@ describe('AppComponent', () => {
     expect(component.popularMovies.length).toBe(0);
   });
 
-  it('should open AddMovieModalComponent when onAdd is called', () => {
+  it('se abre AddMovieModalComponent cuando onAdd es ejecutado', () => {
     component.popularMovies = []
     const newMovie = { id: '1', title: 'New Movie', year: 2023, img: 'https://example.com/image.jpg' };
     const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed: of(newMovie) });
@@ -109,7 +109,7 @@ describe('AppComponent', () => {
     expect(component.popularMovies[0]).toEqual(newMovie);
   });
 
-  it('should open EditMovieModalComponent and update movie on onEdit', () => {
+  it('se abre EditMovieModalComponent y actualiza pelicula en onEdit()', () => {
     const movie = new Movie('1', 'Movie 1', "2020", 'https://example.com/image.jpg');
     component.popularMovies = [movie];
 
@@ -122,7 +122,7 @@ describe('AppComponent', () => {
     expect(component.popularMovies[0].title).toBe('Edited Movie');
   });
 
-  it('should delete a movie on onDelete', () => {
+  it('se borra pelicula cuando onDelete() es ejecutado', () => {
     spyOn(window, 'confirm').and.returnValue(true);
     component.popularMovies = [
       new Movie('1', 'Movie 1', "2020", 'https://example.com/image.jpg')

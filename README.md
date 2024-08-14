@@ -51,7 +51,9 @@ Para el reporte se utiliza karma y se puede generar con el siguiente comando
 ```bash
   ng test --code-coverage
 ```
-Una vez terminado el proceso, se puede revisar el reporte en `/coverage/index.html`# Imágenes de Referencia
+Una vez terminado el proceso, se puede revisar el reporte en `/coverage/index.html`
+
+# Imágenes de Referencia
 
 ![Proyecto](https://i.imgur.com/olrFB76.png)
 

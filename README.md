@@ -1,27 +1,54 @@
-# AngularProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
+# Banco de películas
 
-## Development server
+El proyecto es de un banco de películas utilizando dos  [APIs de IMDB](https://rapidapi.com/DataCrawler/api/imdb188) (Rapidapi) para mostrar informacion mediante cards como: 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* Imagen
+* Titulo
+* Año de estreno
 
-## Code scaffolding
+El proyecto permite buscar, eliminar y editar la informacion de las películas.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Requerimientos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ - [Angular 14](https://angular.dev/installation)
+ - [NodeJs LTS](https://nodejs.org/en/download/prebuilt-installer/current)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Instalación y Ejecución
 
-## Running end-to-end tests
+Primero se debe clonar el proyecto mediante:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+  git clone https://github.com/vzepec/angular-project.git
+```
 
-## Further help
+Luego se deben instalar las dependencias del proyecto, para esto, es necesario ubicarse dentro del directorio raíz del proyecto y ejecutar:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+  npm install
+```
+
+Finalmente se puede levantar el proyecto mediante:
+
+```bash
+  ng serve
+```
+## Tests
+
+Se pueden ejecutar los test unitarios mediante el siguiente comando 
+
+```bash
+  ng test
+```
+Se correrán 24 test en total, se testeó cada uno de los componentes.
+
+Reporte de Covertura
+---
+Para el reporte se utiliza karma y se puede generar con el siguiente comando
+
+```bash
+  ng test --code-coverage
+```
+Una vez terminado el proceso, se puede revisar el reporte en `/coverage/index.html`

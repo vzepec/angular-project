@@ -1,0 +1,29 @@
+<div class="modal-container">
+    <h2>Editar Película</h2>
+    <hr class="separator" />
+    <form (ngSubmit)="onSave()" #movieForm="ngForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Título</mat-label>
+            <input matInput [(ngModel)]="movie.title" name="title" required />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Año</mat-label>
+            <input matInput type="number" [(ngModel)]="movie.year" name="year" #year="ngModel" required min="1900"
+                max="{{ currentYear }}" />
+            <mat-error *ngIf="year.invalid && (year.dirty || year.touched)">
+                <ng-container *ngIf="year.errors?.['required']">El año es requerido.</ng-container>
+                <ng-container *ngIf="year.errors?.['min']">El año debe ser superior a 1900.</ng-container>
+                <ng-container *ngIf="year.errors?.['max']">El año debe ser menor o igual a
+                    {{currentYear}}</ng-container>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>URL de Imagen</mat-label>
+            <input matInput [(ngModel)]="movie.img" name="img" />
+        </mat-form-field>
+        <div class="modal-actions">
+            <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!movieForm.valid">Guardar</button>
+        </div>
+    </form>
+</div>

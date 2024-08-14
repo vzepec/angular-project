@@ -1,0 +1,6 @@
+<mat-form-field class="white-text">
+    <span matPrefix></span>
+    <input #searchInput type="tel" matInput placeholder="Buscar Película" name="search" [(ngModel)]="search"
+        (keyup.enter)="getPopularMovies()">
+    <mat-icon matSuffix (click)="getPopularMovies()">search</mat-icon>
+</mat-form-field>

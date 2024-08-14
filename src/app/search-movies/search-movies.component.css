@@ -1,0 +1,11 @@
+.white-text input {
+    color: white;
+}
+
+::ng-deep .white-text .mat-input-element::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+::ng-deep .white-text .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.6);
+}
